@@ -15,11 +15,36 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
-//Example URL: http://ci.contex.me/job/NewProject/1200/
 if (isset($_GET['url'])) {
 	$build = new JenkinsBuild($_GET['url']);
-	echo $build->getNumber();
+	echo "<b>getSHA1Hash</b>: " . $build->getSHA1Hash() . "<br>";
+	echo "<b>getCause - <i>getShortDescription</i>:</b> " . $build->getCause()->getShortDescription() . "<br>";
+	echo "<b>getCause - <i>getUserID</i>:</b> " . $build->getCause()->getUserID() . "<br>";
+	echo "<b>getCause - <i>getUsername</i>:</b> " . $build->getCause()->getUsername() . "<br>";
+	echo "<b>getCause - <i>getUpstreamBuild</i>:</b> " . $build->getCause()->getUpstreamBuild() . "<br>";
+	echo "<b>getCause - <i>getUpstreamProject</i>:</b> " . $build->getCause()->getUpstreamProject() . "<br>";
+	echo "<b>getCause - <i>getUpstreamURL</i>:</b> " . $build->getCause()->getUpstreamURL() . "<br>";
+	$i = 0;
+	foreach ($build->getArtifacts() as $artifact) {
+		echo "<b>getArtifacts - <u>$i</u> - <i>getDisplayPath</i>:</b> " . $artifact->getDisplayPath() . "<br>";
+		echo "<b>getArtifacts - <u>$i</u> - <i>getFileName</i>:</b> " . $artifact->getFileName() . "<br>";
+		echo "<b>getArtifacts - <u>$i</u> - <i>getRelativePath</i>:</b> " . $artifact->getRelativePath() . "<br>";
+		$i++;
+	}
+	echo "<b>getDescription:</b> " . $build->getDescription() . "<br>";
+	echo "<b>getDuration:</b> " . $build->getDuration() . "<br>";
+	echo "<b>getEstimatedUrdation:</b> " . $build->getEstimatedUrdation() . "<br>";
+	echo "<b>getFullDisplayName:</b> " . $build->getFullDisplayName() . "<br>";
+	echo "<b>getID:</b> " . $build->getID() . "<br>";
+	echo "<b>getKeepLog:</b> " . $build->getKeepLog() . "<br>";
+	echo "<b>getNumber:</b> " . $build->getNumber() . "<br>";
+	echo "<b>getResult:</b> " . $build->getResult() . "<br>";
+	echo "<b>getTimestamp:</b> " . $build->getTimestamp() . "<br>";
+	echo "<b>getURL:</b> " . $build->getURL() . "<br>";
+	echo "<b>getBuiltOn:</b> " . $build->getBuiltOn() . "<br>";
+	echo "<br>";
+	echo "<b>getData:</b><br>";
+	print_r($build->getData());
 }
 
 class JenkinsBuild {
@@ -156,15 +181,15 @@ class JenkinsArtifact {
 	}
 	
 	public function getDisplayPath() {
-		$this->data['displayPath'];
+		return $this->data['displayPath'];
 	}
 	
 	public function getFileName() {
-		$this->data['fileName'];
+		return $this->data['fileName'];
 	}
 	
 	public function getRelativePath() {
-		$this->data['relativePath'];
+		return $this->data['relativePath'];
 	}
 }
 ?>
