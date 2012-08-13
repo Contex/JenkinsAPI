@@ -1,7 +1,7 @@
 JenkinsAPI
 ==========
 
-This PHP API allows to grab information from a Jenkins build and grab any related data.
+This PHP API allows to grab information from a Jenkins build and grab any related data by using Jenkins's JSON API.
 
 Example usage:
 
